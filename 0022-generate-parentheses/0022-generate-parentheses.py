@@ -1,24 +1,14 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         result = []
-        self.generator("",n,result)
+        self.backtrack("",0,0,n,result)
         return result
     
-    def validity(self, string:str):  #Checks the validity whether no of "(" is equal to ")" or not
-        balance = 0
-        for char in string:
-            if char == "(":
-                balance += 1
-            else:
-                balance -= 1
-            if balance<0:
-                return False
-        return balance == 0
-    
-    def generator(self, curr:str, n:int, res:List[int]):
+    def backtrack(self, curr:str, openn:int, close:int, n:int, res:List[str]):
         if len(curr) == 2*n:
-            if self.validity(curr):
-                res.append(curr)
+            res.append(curr)
             return
-        self.generator(curr+"(",n,res)
-        self.generator(curr+")",n,res)
+        if openn<n:
+            self.backtrack(curr+"(", openn+1, close, n, res)
+        if close<openn:
+            self.backtrack(curr+")", openn, close+1, n,res)
