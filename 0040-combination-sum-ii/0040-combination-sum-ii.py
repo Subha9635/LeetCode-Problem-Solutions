@@ -11,15 +11,11 @@ class Solution:
         if target == 0:
             res.append(listt.copy())
             return
-        if ind == n or target<0:
-            return
-            
-        listt.append(arr[ind])
-        self.combinator(arr, target - arr[ind], ind+1, listt, res, n)
-        listt.pop()
-
-        next_ind = ind + 1
-        while next_ind < n and arr[next_ind] == arr[ind]:
-            next_ind += 1
-
-        self.combinator(arr, target, next_ind, listt, res, n)
+        for i in range(ind,n):
+            if i>ind and arr[i] == arr[i-1]:
+                continue
+            if arr[i]>target:
+                break
+            listt.append(arr[i])
+            self.combinator(arr, target - arr[i], i+1, listt, res, n)
+            listt.pop()
