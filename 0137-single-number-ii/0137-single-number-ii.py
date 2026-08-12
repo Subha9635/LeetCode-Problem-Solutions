@@ -1,10 +1,7 @@
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        nums.sort()
-        i = 1
-        while i<len(nums):
-            if nums[i-1] == nums[i]:
-                i += 3
-            else:
-                break
-        return nums[i-1]
+        ones, twos = 0, 0
+        for num in nums:
+            ones = (ones^num) & ~twos
+            twos = (twos^num) & ~ones
+        return ones
