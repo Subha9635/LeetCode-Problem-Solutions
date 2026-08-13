@@ -5,7 +5,7 @@ class Solution:
         for num in nums:
             XOR ^= num
         
-        rightmost = (XOR^(XOR-1)&XOR) #Used to figure out whether the rightmost bit is set or not
+        rightmost = (XOR&(XOR-1)^XOR) #Used to figure out whether the rightmost bit is set or not
         for num in nums:
             if rightmost&num != 0:
                 bucket1 ^= num
