@@ -1,17 +1,15 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        result = 1
-        if n<0:
-            y = -1*n
-        else:
-            y = n
-        while y>0:
-            if y%2 == 0:  #Even n
-                x = x*x
-                y = y/2
-            else:   #Odd n
-                result *= x
-                y -= 1
-        if n<0:
-            result = 1/result
-        return result
+        ans = 1
+        m = n
+        n = abs(n)
+        while n>0:
+            if n%2 == 1: #If power is odd
+                ans *= x
+                n -= 1
+            else: #if power is even
+                x *= x
+                n = n//2
+        if m<0:
+            return 1/ans
+        return ans
