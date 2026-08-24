@@ -1,6 +1,6 @@
 class Solution:
     def removeKdigits(self, num: str, k: int) -> str:
-        if k == len(num):
+        if k >= len(num):
             return "0"
         
         stack = []  #Stores string
