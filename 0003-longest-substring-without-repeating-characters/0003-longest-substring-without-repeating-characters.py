@@ -1,12 +1,15 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         n = len(s)
-        maxlen = 0
-        for i in range(n):
-            hashmap = {}
-            for j in range(i,n):
-                if s[j] in hashmap:
-                    break
-                maxlen = max(maxlen,j-i+1)
-                hashmap[s[j]] = 1
+        hasharr = [-1]*256
+        l, r, maxlen = 0, 0, 0
+        while r<n:
+            charcode = ord(s[r])
+            if hasharr[charcode] != -1: #Means its in the hashmap
+                if hasharr[charcode] >= l:  #l is already updated
+                    l = hasharr[charcode]+1
+            length = r-l+1
+            maxlen = max(maxlen,length)
+            hasharr[charcode] = r
+            r += 1
         return maxlen
