@@ -6,7 +6,7 @@ class Solution:
         l, r = 0, 0
         while r<len(fruits):
             mapp[fruits[r]] += 1
-            while len(mapp) > 2:
+            if len(mapp) > 2:
                 mapp[fruits[l]] -= 1
                 if mapp[fruits[l]] == 0:
                     del mapp[fruits[l]]
